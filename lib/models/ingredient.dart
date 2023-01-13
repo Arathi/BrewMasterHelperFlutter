@@ -21,6 +21,9 @@ class Ingredient {
   List<Flavor> standardFlavors = [];
   List<Flavor> flavorNotes = [];
 
+  int get mainCategoryId => id ~/ 1000;
+  int get subcategoryId => id ~/ 100;
+
   Ingredient(
     this.id,
     this.name, {
@@ -50,8 +53,8 @@ class Ingredient {
     if (json.containsKey("attenuation")) {
       attenuation = json["attenuation"] as double;
     }
-    if (json.containsKey("yeastSpecies")) {
-      yeastSpecies = json["yeastSpecies"] as String;
+    if (json.containsKey("yeast_species")) {
+      yeastSpecies = json["yeast_species"] as String;
     }
     if (json.containsKey("optimal_temperature_low")) {
       optimalTemperatureLow = json["optimal_temperature_low"] as int;

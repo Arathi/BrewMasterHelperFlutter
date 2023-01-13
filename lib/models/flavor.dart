@@ -5,6 +5,8 @@ class Flavor {
   late String name;
   late int value;
 
+  String get tagText => "$name-$value";
+
   Flavor(this.id, this.name, this.value);
 
   Flavor.fromJson(JsonDynamicMap json) {

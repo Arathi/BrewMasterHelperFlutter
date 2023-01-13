@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'components/navigation_bar.dart';
 import 'pages/home_page.dart';
 import 'pages/ingredient_page.dart';
+import 'pages/calculate_page.dart';
+import 'pages/progress_page.dart';
 
 class BrewMasterHelperController extends GetxController {}
 
@@ -11,9 +14,9 @@ class BrewMasterHelperApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = BrewMasterHelperController();
-    Get.put(HomePageController());
-    Get.put(IngredientPageController());
+    Get.lazyPut(() => NavigationBarController());
+    Get.lazyPut(() => HomePageController());
+    Get.lazyPut(() => IngredientPageController());
 
     return GetMaterialApp(
       getPages: [
@@ -25,18 +28,16 @@ class BrewMasterHelperApp extends StatelessWidget {
           name: "/ingredients",
           page: () => IngredientPage(),
         ),
-        // GetPage(
-        //   name: "/calculates",
-        //   page: () => HomePage(),
-        //   binding: HomePageBinding(),
-        // ),
-        // GetPage(
-        //   name: "/progress",
-        //   page: () => HomePage(),
-        //   binding: HomePageBinding(),
-        // ),
+        GetPage(
+          name: "/calculates",
+          page: () => CalculatePage(),
+        ),
+        GetPage(
+          name: "/progress",
+          page: () => ProgressPage(),
+        ),
       ],
-      home: HomePage(),
+      initialRoute: "/home",
     );
   }
 }
